@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #1976d2;
+  --danger-color: #e00000;
+  --success-color: lightgreen;
+  --warning-color: gold;
+  --disabled-color: #e1e1e1;
+  --global-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+  --global-border-radius: 4px;
+  --table-zebra-dark: darkgray;
+  --table-zebra-light: lightgray;
+}
+
+body {
+  scroll-behavior: smooth;
+  font-family: 'Roboto', 'Arial', sans-serif;
+}
+
+section {
+  text-align: center;
+  margin: 0 auto;
+  padding: 1em;
+}
+
+button,
+.btn {
+  cursor: pointer;
+
+  border: none;
+  border-radius: var(--global-border-radius);
+  font-size: 1.125rem;
+  padding: 0.35em;
+  background-color: var(--primary-color);
+  color: white;
+
+  min-width: 75px;
+
+  transition-property: box-shadow, filter;
+  transition-duration: 150ms;
+  transition-timing-function: ease;
+}
+
+button:hover,
+.btn:hover,
+button:focus,
+.btn:focus {
+  box-shadow: var(--global-shadow);
+  filter: brightness(90%);
+}
+
+button:active,
+.btn:active {
+  transform: scale(0.95);
+}
+
+button:disabled,
+.btn:disabled {
+  background-color: var(--disabled-color);
+  color: #5d5d5d;
+  cursor: not-allowed;
+}
+
+button:disabled:hover,
+.btn:disabled:hover {
+  box-shadow: none;
+  filter: none;
+}
+
+button:disabled:active,
+.btn:disabled:active {
+  transform: none;
+}
+
+.btn-danger {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.btn-success {
+  background-color: var(--success-color);
+  color: black;
+}
+
+.btn-warning {
+  background-color: var(--warning-color);
+  color: black;
+}
+
+.msg-banner {
+  z-index: -1;
+  padding: 0.5em;
+  margin: 0.5em 0;
+
+  display: inline-block;
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    font-size: 1.25rem;
+  }
+
+  section {
+    max-width: 80%;
+  }
+}
