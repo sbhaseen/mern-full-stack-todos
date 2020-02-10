@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { deleteItem, setAddedItemsFalse } from '../redux/actions/itemActions';
-import { clearErrors } from '../redux/actions/errorActions';
+import { deleteItem } from '../redux/actions/itemActions';
 import './Forms.css';
 
 class DeleteItem extends Component {
