@@ -90,7 +90,7 @@ export function loadUser() {
     dispatch({ type: USER_LOADING });
 
     return axios
-      .get(getUrl, tokenConfig(getState))
+      .get(getUrl, headerConfig(getState))
       .then(res =>
         dispatch({
           type: USER_LOADED,
@@ -105,21 +105,21 @@ export function loadUser() {
 }
 
 /**
- * Sets the authentication token to send to server in a request.
+ * Sets the headers with authentication token to send to server in a POST request.
  * @param {function} getState - Redux function to get state objects.
  */
-export function tokenConfig(getState) {
+export function headerConfig(getState) {
   const token = getState().auth.token;
 
-  const headerConfig = {
+  const config = {
     headers: {
       'Content-Type': 'application/json'
     }
   };
 
   if (token) {
-    headerConfig.headers['x-auth-token'] = token;
+    config.headers['x-auth-token'] = token;
   }
 
-  return headerConfig;
+  return config;
 }

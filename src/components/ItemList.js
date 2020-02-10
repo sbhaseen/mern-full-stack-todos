@@ -6,7 +6,7 @@ import './ItemList.css';
 import LoadingSpinner from './LoadingSpinner';
 import { Link } from 'react-router-dom';
 
-function ListBody(props) {
+function TableBody(props) {
   const items = props.items;
   const auth = props.auth;
 
@@ -19,8 +19,19 @@ function ListBody(props) {
         <td>{item.completed.toString()}</td>
         {auth ? (
           <td>
-            <button className="btn-primary">Edit</button>
-            <button className="btn-danger">Delete</button>
+            <Link
+              to={{ pathname: `/edit/${item._id}`, state: { item } }}
+              className="btn btn-primary"
+            >
+              Edit
+            </Link>
+
+            <Link
+              to={{ pathname: `/delete/${item._id}`, state: { item } }}
+              className="btn btn-danger"
+            >
+              Delete
+            </Link>
           </td>
         ) : (
           <td></td>
@@ -57,49 +68,52 @@ class ItemList extends Component {
     const { isAuthenticated } = this.props.auth;
 
     return (
-      <section>
-        {isAuthenticated ? (
-          <div className="add-button">
-            <Link to="/add" className="btn">
-              Add Item
-            </Link>
-          </div>
-        ) : (
-          <p className="msg-banner">Please login to manage items.</p>
-        )}
+      <>
+        <section>
+          {isAuthenticated ? (
+            <div className="add-button">
+              <Link to="/add" className="btn">
+                Add Item
+              </Link>
+            </div>
+          ) : (
+            <p className="msg-banner">Please login to manage items.</p>
+          )}
 
-        <div className="table-container">
-          <table className="item-list-table">
-            <thead>
-              <tr>
-                <th>Description</th>
-                <th>Responsible</th>
-                <th>Priority</th>
-                <th>Completed</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            {isLoading ? (
-              <tbody>
+          <div className="table-container">
+            <table className="item-list-table">
+              <thead>
                 <tr>
-                  <td colSpan="5">
-                    <LoadingSpinner />
-                  </td>
+                  <th>Description</th>
+                  <th>Responsible</th>
+                  <th>Priority</th>
+                  <th>Completed</th>
+                  <th>Actions</th>
                 </tr>
-              </tbody>
-            ) : (
-              <ListBody items={items} auth={isAuthenticated} />
-            )}
-          </table>
-        </div>
-        {isLoading ? null : (
-          <div className="table-nav-container">
-            <button disabled>Prev</button>
-            <p>Page X of Y</p>
-            <button>Next</button>
+              </thead>
+
+              {isLoading ? (
+                <tbody>
+                  <tr>
+                    <td colSpan="5">
+                      <LoadingSpinner />
+                    </td>
+                  </tr>
+                </tbody>
+              ) : (
+                <TableBody items={items} auth={isAuthenticated} />
+              )}
+            </table>
           </div>
-        )}
-      </section>
+          {isLoading ? null : (
+            <div className="table-nav-container">
+              <button disabled>Prev</button>
+              <p>Page X of Y</p>
+              <button>Next</button>
+            </div>
+          )}
+        </section>
+      </>
     );
   }
 }

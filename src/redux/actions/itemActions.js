@@ -3,11 +3,12 @@ import {
   GET_ITEMS,
   ITEMS_LOADING,
   ADD_ITEM,
+  ADD_ITEM_PRELOAD,
   DELETE_ITEM,
   ITEMS_ERROR
 } from './actionTypes';
 import { returnErrors } from './errorActions';
-import { tokenConfig } from './authActions';
+import { headerConfig } from './authActions';
 
 /**
  * Handle fetching item data from the api.
@@ -69,6 +70,15 @@ export function setItemsLoading() {
 }
 
 /**
+ * A helper funciton to ensure added item status always starts falsy.
+ */
+export function setAddedItemsFalse() {
+  return {
+    type: ADD_ITEM_PRELOAD
+  };
+}
+
+/**
  * Handle the addition of a new item.
  * @param {Object} item - The data of a new item.
  */
@@ -77,14 +87,34 @@ export function addItem(item) {
     const postUrl = 'http://localhost:5000/api/items/';
 
     return axios
-      .post(postUrl, item, tokenConfig(getState))
-      .then(res =>
+      .post(postUrl, item, headerConfig(getState))
+      .then(res => {
         dispatch({
           type: ADD_ITEM,
           payload: res.data
-        })
-      )
-      .catch(err => dispatch(returnErrors(err)));
+        });
+      })
+      .catch(err => {
+        dispatch(returnErrors(err));
+      });
+  };
+}
+
+export function updateItem(item) {
+  return (dispatch, getState) => {
+    const putUrl = `http://localhost:5000/api/items/${item.id}`;
+
+    return axios
+      .put(putUrl, item, headerConfig(getState))
+      .then(res => {
+        dispatch({
+          type: ADD_ITEM,
+          payload: res.data
+        });
+      })
+      .catch(err => {
+        dispatch(returnErrors(err));
+      });
   };
 }
 
@@ -94,10 +124,10 @@ export function addItem(item) {
  */
 export function deleteItem(id) {
   return (dispatch, getState) => {
-    const deleteUrl = `http://localhost:5000/api/items/${id}`;
+    const deleteUrl = `http://localhost:5000/api/items/delete/${id}`;
 
     return axios
-      .delete(deleteUrl, tokenConfig(getState))
+      .delete(deleteUrl, headerConfig(getState))
       .then(res => {
         dispatch({
           type: DELETE_ITEM,

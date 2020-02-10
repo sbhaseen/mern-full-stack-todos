@@ -1,0 +1,15 @@
+.not-found-container {
+  min-height: 75vh;
+  padding: 1em;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.not-found-text {
+  text-shadow: var(--global-shadow);
+  font-size: 4rem;
+  text-align: center;
+}

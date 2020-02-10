@@ -9,7 +9,6 @@
 }
 
 .add-button > .btn {
-  text-decoration: none;
   background-image: linear-gradient(
     to right,
     var(--primary-color),
@@ -23,9 +22,6 @@
   font-size: 1.25rem;
   font-weight: bold;
 
-  /* animation: bg-animation 1000ms infinite alternate;
-  animation-play-state: paused; */
-
   transition-property: background-position, color;
   transition-duration: 300ms;
   transition-timing-function: ease;
@@ -35,7 +31,6 @@
 .add-button > .btn:hover {
   background-position: right;
   color: black;
-  /* animation-play-state: running; */
   filter: none;
 }
 
@@ -62,7 +57,7 @@ td {
   padding: 0.5rem 0;
 }
 
-td > button {
+td > .btn {
   margin: 4px;
 }
 

@@ -10,10 +10,15 @@ export function returnErrors(err) {
       type: GET_ERRORS,
       payload: { msg: err.response.data, status: err.response.status }
     };
+  } else if (err.request) {
+    return {
+      type: GET_ERRORS,
+      payload: { msg: err.message, status: 400 }
+    };
   } else {
     return {
       type: GET_ERRORS,
-      payload: { msg: err, status: 500 }
+      payload: { msg: err.message, status: 500 }
     };
   }
 }

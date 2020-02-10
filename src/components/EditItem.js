@@ -1,21 +1,28 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addItem, setAddedItemsFalse } from '../redux/actions/itemActions';
+import {
+  getOneItem,
+  updateItem,
+  setAddedItemsFalse
+} from '../redux/actions/itemActions';
 import { clearErrors } from '../redux/actions/errorActions';
 import './Forms.css';
 
-class AddItem extends Component {
+class EditItem extends Component {
   state = {
-    description: null,
-    responsible: null,
-    priority: null,
+    id: this.props.location.state.item._id,
+    description: this.props.location.state.item.description,
+    responsible: this.props.location.state.item.responsible,
+    priority: this.props.location.state.item.priority,
+    completed: this.props.location.state.item.completed,
     msg: null
   };
 
   static propTypes = {
     setAddedItemsFalse: PropTypes.func.isRequired,
-    addItem: PropTypes.func.isRequired,
+    getOneItem: PropTypes.func.isRequired,
+    updateItem: PropTypes.func.isRequired,
     items: PropTypes.object.isRequired,
     error: PropTypes.object.isRequired,
     clearErrors: PropTypes.func.isRequired
@@ -46,20 +53,28 @@ class AddItem extends Component {
     }
   };
 
+  handleCheckboxInput = e => {
+    // this.setState(prevState => ({ completed: !prevState.completed }));
+    this.setState(prevState => ({ completed: !prevState.completed }));
+  };
+
   handleSubmit = e => {
     e.preventDefault();
 
-    const { description, responsible, priority } = this.state;
-    const newItem = { description, responsible, priority };
+    const { id, description, responsible, priority, completed } = this.state;
+    const newItem = { id, description, responsible, priority, completed };
 
-    this.props.addItem(newItem);
+    this.props.updateItem(newItem);
   };
 
   render() {
+    const { id } = this.props.match.params;
+    const { item } = this.props.location.state;
+
     return (
       <div className="form-container">
         <form onSubmit={this.handleSubmit}>
-          <legend>Add a New Item</legend>
+          <legend>Edit Item: {id}</legend>
           {this.state.msg ? <small>{this.state.msg}</small> : null}
 
           <label htmlFor="description">Description</label>
@@ -67,6 +82,7 @@ class AddItem extends Component {
             name="description"
             type="text"
             placeholder="A description"
+            defaultValue={item.description}
             onChange={this.handleDataInput}
             required
           />
@@ -76,17 +92,30 @@ class AddItem extends Component {
             name="responsible"
             type="text"
             placeholder="A responsible person"
+            defaultValue={item.responsible}
             onChange={this.handleDataInput}
           />
 
           <label htmlFor="priority">Priority</label>
-          <select name="priority">
+          <select
+            name="priority"
+            defaultValue={item.priority}
+            onChange={this.handleDataInput}
+          >
             <option value="Low">Low</option>
             <option value="Medium">Medium</option>
             <option value="High">High</option>
           </select>
 
-          <button>Add</button>
+          <label htmlFor="completed">Completed</label>
+          <input
+            name="completed"
+            type="checkbox"
+            defaultChecked={this.state.completed}
+            onChange={this.handleCheckboxInput}
+          />
+
+          <button>Submit</button>
         </form>
       </div>
     );
@@ -100,7 +129,8 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-  addItem,
+  getOneItem,
+  updateItem,
   setAddedItemsFalse,
   clearErrors
-})(AddItem);
+})(EditItem);

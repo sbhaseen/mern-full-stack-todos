@@ -3,12 +3,14 @@ import {
   ADD_ITEM,
   DELETE_ITEM,
   ITEMS_LOADING,
-  ITEMS_ERROR
+  ITEMS_ERROR,
+  ADD_ITEM_PRELOAD
 } from '../actions/actionTypes';
 
 const initialState = {
   items: [],
-  isLoading: false
+  isLoading: false,
+  addedItem: false
 };
 
 export default function itemReducer(state = initialState, action) {
@@ -17,17 +19,25 @@ export default function itemReducer(state = initialState, action) {
       return {
         ...state,
         items: action.payload,
-        isLoading: false
+        isLoading: false,
+        addedItem: false
       };
     case DELETE_ITEM:
       return {
         ...state,
         items: state.items.filter(item => item._id !== action.payload)
       };
+    case ADD_ITEM_PRELOAD:
+      return {
+        ...state,
+        addedItem: false
+      };
     case ADD_ITEM:
       return {
         ...state,
-        items: [action.payload, ...state.items]
+        items: [action.payload, ...state.items],
+        isLoading: false,
+        addedItem: true
       };
     case ITEMS_LOADING:
       return {
