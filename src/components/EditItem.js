@@ -54,8 +54,11 @@ class EditItem extends Component {
   };
 
   handleCheckboxInput = e => {
-    // this.setState(prevState => ({ completed: !prevState.completed }));
     this.setState(prevState => ({ completed: !prevState.completed }));
+  };
+
+  handleCancel = e => {
+    this.props.history.push('/');
   };
 
   handleSubmit = e => {
@@ -115,7 +118,18 @@ class EditItem extends Component {
             onChange={this.handleCheckboxInput}
           />
 
-          <button>Submit</button>
+          <div className="form-button-container">
+            <button
+              type="cancel"
+              className="btn-primary"
+              onClick={this.handleCancel}
+            >
+              Cancel
+            </button>
+            <button type="submit" className="btn-success">
+              Update
+            </button>
+          </div>
         </form>
       </div>
     );

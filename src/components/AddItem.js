@@ -46,6 +46,10 @@ class AddItem extends Component {
     }
   };
 
+  handleCancel = e => {
+    this.props.history.push('/');
+  };
+
   handleSubmit = e => {
     e.preventDefault();
 
@@ -86,7 +90,18 @@ class AddItem extends Component {
             <option value="High">High</option>
           </select>
 
-          <button>Add</button>
+          <div className="form-button-container">
+            <button
+              type="cancel"
+              className="btn-primary"
+              onClick={this.handleCancel}
+            >
+              Cancel
+            </button>
+            <button type="submit" className="btn-success">
+              Add
+            </button>
+          </div>
         </form>
       </div>
     );

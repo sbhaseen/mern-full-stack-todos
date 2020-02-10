@@ -1,24 +1,39 @@
-.delete-modal-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 1em;
+.delete-form {
+  width: 100%;
 
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  background: rgba(0, 0, 0, 0.75);
-  color: white;
+  padding: 1em;
+  border-radius: var(--global-border-radius);
+  background: #ffe8e8;
+  box-shadow: var(--global-shadow);
 }
 
-.delete-modal-container > .button-container {
+.delete-form > h1,
+.delete-form > h2,
+.delete-form > h3 {
+  padding: 0.25em 0;
+}
+
+.delete-form > h4 {
+  padding: 0.25em;
+}
+
+.delete-form > .info-group {
   width: 100%;
+  padding: 0.5em;
+
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+}
+
+@media screen and (min-width: 768px) {
+  .delete-form {
+    min-width: 50%;
+    max-width: 800px;
+  }
 }

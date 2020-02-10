@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { deleteItem } from '../redux/actions/itemActions';
 import './Forms.css';
+import './DeleteItem.css';
 
 class DeleteItem extends Component {
   state = {
@@ -10,8 +11,7 @@ class DeleteItem extends Component {
     description: this.props.location.state.item.description,
     responsible: this.props.location.state.item.responsible,
     priority: this.props.location.state.item.priority,
-    completed: this.props.location.state.item.completed,
-    msg: null
+    completed: this.props.location.state.item.completed
   };
 
   static propTypes = {
@@ -36,20 +36,27 @@ class DeleteItem extends Component {
 
     return (
       <div className="form-container">
-        <form onSubmit={this.handleSubmit}>
-          <legend>Delete Item: {id}</legend>
-          <h1>Are you sure you want to delete this item?</h1>
+        <div className="delete-form" onSubmit={this.handleSubmit}>
+          <h1>Delete Item:</h1>
+          <h2>ID: {id}</h2>
+          <h3>Are you sure you want to delete this item?</h3>
 
-          <label htmlFor="description">Description</label>
-          <p name="description">{item.description}</p>
+          <div className="info-group">
+            <h4>Description</h4>
+            <p>{item.description}</p>
+          </div>
 
-          <label htmlFor="responsible">Responsible</label>
-          <p name="responsible">{item.responsible}</p>
+          <div className="info-group">
+            <h4>Responsible</h4>
+            <p>{item.responsible}</p>
+          </div>
 
-          <label htmlFor="priority">Priority</label>
-          <p name="priority">{item.priority}</p>
+          <div className="info-group">
+            <h4>Priority</h4>
+            <p>{item.priority}</p>
+          </div>
 
-          <label htmlFor="completed">Completed</label>
+          <h4 htmlFor="completed">Completed</h4>
           <input
             name="completed"
             type="checkbox"
@@ -57,13 +64,15 @@ class DeleteItem extends Component {
             readOnly
           />
 
-          <button className="btn-primary" onClick={this.handleCancel}>
-            Cancel
-          </button>
-          <button className="btn-danger" onClick={this.handleSubmit}>
-            Delete
-          </button>
-        </form>
+          <div className="form-button-container">
+            <button className="btn-primary" onClick={this.handleCancel}>
+              Cancel
+            </button>
+            <button className="btn-danger" onClick={this.handleSubmit}>
+              Delete
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
