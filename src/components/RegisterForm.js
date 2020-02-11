@@ -11,6 +11,7 @@ class RegisterForm extends Component {
     email: null,
     password: null,
     password2: null,
+    passMatch: false,
     msg: null
   };
 
@@ -34,8 +35,20 @@ class RegisterForm extends Component {
     }
   }
 
+  checkPasswords = () => {
+    if (
+      this.state.password &&
+      this.state.password2 &&
+      this.state.password === this.state.password2
+    ) {
+      this.setState({ passMatch: true });
+    } else {
+      this.setState({ passMatch: false });
+    }
+  };
+
   handleDataInput = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value }, this.checkPasswords);
 
     if (this.state.msg !== null) {
       this.props.clearErrors();
@@ -95,7 +108,11 @@ class RegisterForm extends Component {
           />
 
           <div className="form-button-container">
-            <button className="btn-success" type="submit">
+            <button
+              className="btn-success"
+              type="submit"
+              disabled={this.state.passMatch ? false : true}
+            >
               Register
             </button>
             <button className="btn-warning" type="reset">
