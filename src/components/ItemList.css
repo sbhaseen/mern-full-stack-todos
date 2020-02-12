@@ -1,5 +1,7 @@
 .table-container {
   overflow-x: auto;
+  overflow-y: auto;
+  max-height: 75vh;
   z-index: 1;
 }
 

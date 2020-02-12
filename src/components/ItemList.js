@@ -10,8 +10,8 @@ function TableBody(props) {
   const items = props.items;
   const auth = props.auth;
 
-  if (items.length > 0) {
-    const itemsBody = items.map((item, index) => (
+  if (items.data && items.data.length > 0) {
+    const itemsBody = items.data.map((item, index) => (
       <tr key={index}>
         <td>{item.description}</td>
         <td>{item.responsible}</td>
@@ -107,9 +107,17 @@ class ItemList extends Component {
           </div>
           {isLoading ? null : (
             <div className="table-nav-container">
-              <button disabled>Prev</button>
-              <p>Page X of Y</p>
-              <button>Next</button>
+              <button disabled={this.props.items.items.previous ? false : true}>
+                Prev
+              </button>
+              <p>
+                Page{' '}
+                {this.props.items.items.next - this.props.items.items.previous}
+                of Y
+              </p>
+              <button disabled={this.props.items.items.next ? false : true}>
+                Next
+              </button>
             </div>
           )}
         </section>
