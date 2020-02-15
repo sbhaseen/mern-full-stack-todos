@@ -13,9 +13,13 @@ import { headerConfig } from './authActions';
 /**
  * Handle fetching item data from the api.
  */
-export function getItems() {
+export function getItems(fetchPage, fetchLimit) {
   return dispatch => {
-    const getUrl = 'http://localhost:5000/api/items';
+    let params = new URLSearchParams();
+    params.append('page', fetchPage);
+    params.append('limit', fetchLimit);
+
+    const getUrl = 'http://localhost:5000/api/items?' + params;
 
     dispatch(setItemsLoading());
 

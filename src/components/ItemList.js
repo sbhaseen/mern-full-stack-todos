@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getItems } from '../redux/actions/itemActions';
+import {
+  getNextPage,
+  getPrevPage,
+  setPageItemLimit
+} from '../redux/actions/paginationActions';
 import './ItemList.css';
 import LoadingSpinner from './LoadingSpinner';
 import { Link } from 'react-router-dom';
@@ -10,8 +15,8 @@ function TableBody(props) {
   const items = props.items;
   const auth = props.auth;
 
-  if (items.data && items.data.length > 0) {
-    const itemsBody = items.data.map((item, index) => (
+  if (items.length > 0) {
+    const itemsBody = items.map((item, index) => (
       <tr key={index}>
         <td>{item.description}</td>
         <td>{item.responsible}</td>
@@ -60,8 +65,36 @@ class ItemList extends Component {
   };
 
   componentDidMount() {
-    this.props.getItems();
+    this.props.getItems(
+      this.props.pagination.currentPage,
+      this.props.pagination.pageLimit
+    );
   }
+
+  handleNextPage = e => {
+    this.props.getNextPage();
+    this.props.getItems(
+      this.props.pagination.nextPage,
+      this.props.pagination.pageLimit
+    );
+  };
+
+  handlePreviousPage = e => {
+    this.props.getPrevPage();
+    this.props.getItems(
+      this.props.pagination.previousPage,
+      this.props.pagination.pageLimit
+    );
+  };
+
+  handleLimitSelection = e => {
+    const newPageLimit = parseInt(e.target.value);
+
+    if (newPageLimit !== this.props.pagination.pageLimit) {
+      this.props.setPageItemLimit(newPageLimit);
+      this.props.getItems(this.props.pagination.currentPage, newPageLimit);
+    }
+  };
 
   render() {
     const { items, isLoading } = this.props.items;
@@ -79,6 +112,18 @@ class ItemList extends Component {
           ) : (
             <p className="msg-banner">Please login to manage items.</p>
           )}
+
+          <div>
+            <label htmlFor="item-limit">Item Limit</label>
+            <select
+              name="item-limit"
+              onChange={this.handleLimitSelection}
+              defaultValue={this.props.pagination.pageLimit}
+            >
+              <option value="5">5</option>
+              <option value="10">10</option>
+            </select>
+          </div>
 
           <div className="table-container">
             <table className="item-list-table">
@@ -107,15 +152,22 @@ class ItemList extends Component {
           </div>
           {isLoading ? null : (
             <div className="table-nav-container">
-              <button disabled={this.props.items.items.previous ? false : true}>
+              <button
+                disabled={this.props.pagination.previousPage ? false : true}
+                onClick={this.handlePreviousPage}
+              >
                 Prev
               </button>
+
               <p>
-                Page{' '}
-                {this.props.items.items.next - this.props.items.items.previous}
-                of Y
+                Page {this.props.pagination.currentPage} of{' '}
+                {this.props.pagination.total.pages}
               </p>
-              <button disabled={this.props.items.items.next ? false : true}>
+
+              <button
+                disabled={this.props.pagination.nextPage ? false : true}
+                onClick={this.handleNextPage}
+              >
                 Next
               </button>
             </div>
@@ -127,9 +179,14 @@ class ItemList extends Component {
 }
 
 function mapStateToProps(state) {
-  const { items, auth } = state;
+  const { items, auth, pagination } = state;
 
-  return { items, auth };
+  return { items, auth, pagination };
 }
 
-export default connect(mapStateToProps, { getItems })(ItemList);
+export default connect(mapStateToProps, {
+  getItems,
+  getNextPage,
+  getPrevPage,
+  setPageItemLimit
+})(ItemList);
