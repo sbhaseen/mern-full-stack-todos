@@ -6,8 +6,7 @@
 }
 
 .add-button {
-  padding: 1em;
-  text-align: right;
+  padding: 0.5em;
 }
 
 .add-button > .btn {
@@ -20,7 +19,7 @@
   );
   background-size: 500%;
   background-position: left;
-  padding: 0.75em;
+  padding: 0.5em;
   font-size: 1.25rem;
   font-weight: bold;
 
@@ -70,4 +69,26 @@ td > .btn {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+}
+
+.item-limit-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.table-top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.item-limit-container > label {
+  padding: 1em;
+}
+
+.item-limit-container > select {
+  width: 50px;
 }

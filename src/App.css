@@ -98,7 +98,6 @@ button:active,
 button:active::before,
 .btn:active::before {
   transform: scale(0.9);
-  /* border: none; */
 }
 
 button:disabled,

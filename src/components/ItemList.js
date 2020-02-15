@@ -103,26 +103,28 @@ class ItemList extends Component {
     return (
       <>
         <section>
-          {isAuthenticated ? (
-            <div className="add-button">
-              <Link to="/add" className="btn">
-                Add Item
-              </Link>
+          <div className="table-top">
+            <div className="item-limit-container">
+              <label htmlFor="item-limit">Items per page: </label>
+              <select
+                name="item-limit"
+                onChange={this.handleLimitSelection}
+                defaultValue={this.props.pagination.pageLimit}
+                disabled={this.props.items.items.length > 0 ? false : true}
+              >
+                <option value="5">5</option>
+                <option value="10">10</option>
+              </select>
             </div>
-          ) : (
-            <p className="msg-banner">Please login to manage items.</p>
-          )}
-
-          <div>
-            <label htmlFor="item-limit">Item Limit</label>
-            <select
-              name="item-limit"
-              onChange={this.handleLimitSelection}
-              defaultValue={this.props.pagination.pageLimit}
-            >
-              <option value="5">5</option>
-              <option value="10">10</option>
-            </select>
+            {isAuthenticated ? (
+              <div className="add-button">
+                <Link to="/add" className="btn">
+                  Add Item
+                </Link>
+              </div>
+            ) : (
+              <p className="msg-banner">Please login to manage items.</p>
+            )}
           </div>
 
           <div className="table-container">

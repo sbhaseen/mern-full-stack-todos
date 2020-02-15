@@ -22,7 +22,7 @@ form {
   box-shadow: var(--global-shadow);
 }
 
-form > legend {
+legend {
   padding: 1em;
   font-size: 2rem;
 }
@@ -31,7 +31,7 @@ form > label {
   align-self: flex-start;
 }
 
-form > input {
+input {
   margin: 1em 0;
   padding: 0.5em;
   width: 100%;
@@ -42,7 +42,7 @@ form > input {
   font-size: 1rem;
 }
 
-form > select {
+select {
   margin: 1em 0;
   padding: 0.5em;
   width: 100%;
