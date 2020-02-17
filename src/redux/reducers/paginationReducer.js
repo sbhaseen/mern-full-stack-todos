@@ -9,7 +9,7 @@ import {
 
 const initialState = {
   currentPage: 1,
-  pageLimit: 5,
+  itemLimit: 5,
   previousPage: undefined,
   nextPage: undefined,
   total: {},
@@ -53,7 +53,7 @@ export default function paginationReducer(state = initialState, action) {
     case SET_PAGE_ITEM_LIMIT:
       return {
         ...state,
-        pageLimit: action.payload
+        itemLimit: action.payload
       };
 
     case ITEMS_LOADING:

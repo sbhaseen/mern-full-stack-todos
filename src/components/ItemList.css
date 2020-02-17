@@ -20,7 +20,7 @@
   background-size: 500%;
   background-position: left;
   padding: 0.5em;
-  font-size: 1.25rem;
+
   font-weight: bold;
 
   transition-property: background-position, color;
@@ -49,6 +49,10 @@ table.item-list-table {
   position: relative;
   text-decoration: line-through;
   color: #636363;
+}
+
+.item-list-table .status {
+  font-size: 2rem;
 }
 
 th,
@@ -97,4 +101,10 @@ td > .btn {
 
 .item-limit-container > select {
   width: 75px;
+}
+
+@media screen and (min-width: 768px) {
+  .add-button > .btn {
+    font-size: 1.25rem;
+  }
 }

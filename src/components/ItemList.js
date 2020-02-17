@@ -25,7 +25,10 @@ function TableBody(props) {
           {item.responsible}
         </td>
         <td className={item.completed ? 'completed' : null}>{item.priority}</td>
-        <td style={item.completed ? { color: 'green' } : { color: 'red' }}>
+        <td
+          className="status"
+          style={item.completed ? { color: 'green' } : { color: 'red' }}
+        >
           {item.completed
             ? String.fromCharCode(10004)
             : String.fromCharCode(10006)}
@@ -75,15 +78,21 @@ class ItemList extends Component {
   componentDidMount() {
     this.props.getItems(
       this.props.pagination.currentPage,
-      this.props.pagination.pageLimit
+      this.props.pagination.itemLimit
     );
+  }
+
+  componentDidUpdate() {
+    if (this.props.pagination.currentPage > this.props.pagination.total.pages) {
+      this.handlePreviousPage();
+    }
   }
 
   handleNextPage = e => {
     this.props.getNextPage();
     this.props.getItems(
       this.props.pagination.nextPage,
-      this.props.pagination.pageLimit
+      this.props.pagination.itemLimit
     );
   };
 
@@ -91,16 +100,16 @@ class ItemList extends Component {
     this.props.getPrevPage();
     this.props.getItems(
       this.props.pagination.previousPage,
-      this.props.pagination.pageLimit
+      this.props.pagination.itemLimit
     );
   };
 
   handleLimitSelection = e => {
-    const newPageLimit = parseInt(e.target.value);
+    const newItemLimit = parseInt(e.target.value);
 
-    if (newPageLimit !== this.props.pagination.pageLimit) {
-      this.props.setPageItemLimit(newPageLimit);
-      this.props.getItems(this.props.pagination.currentPage, newPageLimit);
+    if (newItemLimit !== this.props.pagination.itemLimit) {
+      this.props.setPageItemLimit(newItemLimit);
+      this.props.getItems(this.props.pagination.currentPage, newItemLimit);
     }
   };
 
@@ -117,7 +126,7 @@ class ItemList extends Component {
               <select
                 name="item-limit"
                 onChange={this.handleLimitSelection}
-                defaultValue={this.props.pagination.pageLimit}
+                defaultValue={this.props.pagination.itemLimit}
                 disabled={this.props.items.items.length > 0 ? false : true}
               >
                 <option value="5">5</option>
