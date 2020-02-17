@@ -45,6 +45,12 @@ table.item-list-table {
   table-layout: auto;
 }
 
+.item-list-table .completed {
+  position: relative;
+  text-decoration: line-through;
+  color: #636363;
+}
+
 th,
 tr:nth-child(even) {
   background-color: var(--table-zebra-light);
@@ -90,5 +96,5 @@ td > .btn {
 }
 
 .item-limit-container > select {
-  width: 50px;
+  width: 75px;
 }

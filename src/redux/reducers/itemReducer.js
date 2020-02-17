@@ -25,7 +25,7 @@ export default function itemReducer(state = initialState, action) {
     case DELETE_ITEM:
       return {
         ...state,
-        items: state.items.data.filter(item => item._id !== action.payload)
+        items: state.items.filter(item => item._id !== action.payload)
       };
     case ADD_ITEM_PRELOAD:
       return {
@@ -35,7 +35,7 @@ export default function itemReducer(state = initialState, action) {
     case ADD_ITEM:
       return {
         ...state,
-        items: [action.payload, ...state.items.data],
+        items: [action.payload, ...state.items],
         isLoading: false,
         addedItem: true
       };

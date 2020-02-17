@@ -18,10 +18,18 @@ function TableBody(props) {
   if (items.length > 0) {
     const itemsBody = items.map((item, index) => (
       <tr key={index}>
-        <td>{item.description}</td>
-        <td>{item.responsible}</td>
-        <td>{item.priority}</td>
-        <td>{item.completed.toString()}</td>
+        <td className={item.completed ? 'completed' : null}>
+          {item.description}{' '}
+        </td>
+        <td className={item.completed ? 'completed' : null}>
+          {item.responsible}
+        </td>
+        <td className={item.completed ? 'completed' : null}>{item.priority}</td>
+        <td style={item.completed ? { color: 'green' } : { color: 'red' }}>
+          {item.completed
+            ? String.fromCharCode(10004)
+            : String.fromCharCode(10006)}
+        </td>
         {auth ? (
           <td>
             <Link
