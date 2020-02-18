@@ -56,13 +56,18 @@ class DeleteItem extends Component {
             <p>{item.priority}</p>
           </div>
 
-          <h4 htmlFor="completed">Completed</h4>
-          <input
-            name="completed"
-            type="checkbox"
-            defaultChecked={this.state.completed}
-            readOnly
-          />
+          <div className="info-group">
+            <h4 htmlFor="completed">Completed</h4>
+            <p
+              style={
+                this.state.completed ? { color: 'green' } : { color: 'red' }
+              }
+            >
+              {this.state.completed
+                ? String.fromCharCode(10004)
+                : String.fromCharCode(10006)}
+            </p>
+          </div>
 
           <div className="form-button-container">
             <button className="btn-primary" onClick={this.handleCancel}>

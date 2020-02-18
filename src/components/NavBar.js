@@ -24,20 +24,26 @@ class NavBar extends Component {
 
     const guestLinks = (
       <Fragment>
-        <Link className="nav-item" to="/register">
-          Register
-        </Link>
-        <Link className="nav-item" to="/login">
-          Login
-        </Link>
+        <li>
+          <Link className="nav-item" to="/register">
+            Register
+          </Link>
+        </li>
+        <li>
+          <Link className="nav-item" to="/login">
+            Login
+          </Link>
+        </li>
       </Fragment>
     );
 
     const authLinks = (
       <Fragment>
-        <Link className="nav-item" to="/" onClick={this.props.logout}>
-          Logout
-        </Link>
+        <li>
+          <Link className="nav-item" to="/" onClick={this.props.logout}>
+            Logout
+          </Link>
+        </li>
       </Fragment>
     );
 
@@ -56,9 +62,11 @@ class NavBar extends Component {
           {isAuthenticated ? (
             <li className="nav-welcome">Welcome, {user ? user.name : null}</li>
           ) : null}
-          <Link className="nav-item" to="/">
-            Home
-          </Link>
+          <li>
+            <Link className="nav-item" to="/">
+              Home
+            </Link>
+          </li>
           {isAuthenticated ? authLinks : guestLinks}
         </ul>
       </nav>

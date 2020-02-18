@@ -82,6 +82,7 @@ class EditItem extends Component {
 
           <label htmlFor="description">Description</label>
           <input
+            id="description"
             name="description"
             type="text"
             placeholder="A description"
@@ -92,6 +93,7 @@ class EditItem extends Component {
 
           <label htmlFor="responsible">Responsible</label>
           <input
+            id="responsible"
             name="responsible"
             type="text"
             placeholder="A responsible person"
@@ -101,6 +103,7 @@ class EditItem extends Component {
 
           <label htmlFor="priority">Priority</label>
           <select
+            id="priority"
             name="priority"
             defaultValue={item.priority}
             onChange={this.handleDataInput}
@@ -110,13 +113,16 @@ class EditItem extends Component {
             <option value="High">High</option>
           </select>
 
-          <label htmlFor="completed">Completed</label>
-          <input
-            name="completed"
-            type="checkbox"
-            defaultChecked={this.state.completed}
-            onChange={this.handleCheckboxInput}
-          />
+          <label htmlFor="completed" className="checkbox">
+            <span>Completed </span>
+            <input
+              id="completed"
+              name="completed"
+              type="checkbox"
+              defaultChecked={this.state.completed}
+              onChange={this.handleCheckboxInput}
+            />
+          </label>
 
           <div className="form-button-container">
             <button

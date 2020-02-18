@@ -124,6 +124,7 @@ class ItemList extends Component {
             <div className="item-limit-container">
               <label htmlFor="item-limit">Items per page: </label>
               <select
+                id="item-limit"
                 name="item-limit"
                 onChange={this.handleLimitSelection}
                 defaultValue={this.props.pagination.itemLimit}

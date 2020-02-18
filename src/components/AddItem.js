@@ -68,6 +68,7 @@ class AddItem extends Component {
 
           <label htmlFor="description">Description</label>
           <input
+            id="description"
             name="description"
             type="text"
             placeholder="A description"
@@ -77,6 +78,7 @@ class AddItem extends Component {
 
           <label htmlFor="responsible">Responsible</label>
           <input
+            id="responsible"
             name="responsible"
             type="text"
             placeholder="A responsible person"
@@ -84,7 +86,7 @@ class AddItem extends Component {
           />
 
           <label htmlFor="priority">Priority</label>
-          <select name="priority">
+          <select id="priority" name="priority">
             <option value="Low">Low</option>
             <option value="Medium">Medium</option>
             <option value="High">High</option>

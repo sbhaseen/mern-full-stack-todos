@@ -60,6 +60,55 @@ form > small {
   border: 1px solid red;
 }
 
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checkbox > span {
+  padding: 0.5rem 0.25rem;
+}
+
+.checkbox > input {
+  height: 1.5em;
+  width: 1.5em;
+  appearance: none;
+
+  border-radius: var(--global-border-radius);
+
+  background: white;
+
+  cursor: pointer;
+  position: relative;
+}
+
+.checkbox > input::before {
+  content: '✔';
+  color: white;
+  position: absolute;
+  font-size: 1.2em;
+  text-align: center;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  visibility: hidden;
+}
+
+.checkbox > input:checked::before {
+  background: var(--primary-color);
+  visibility: visible;
+}
+
+.checkbox > input:disabled {
+  border-color: black;
+  background: #ddd;
+  color: gray;
+}
+
 .form-button-container {
   width: 100%;
   display: flex;

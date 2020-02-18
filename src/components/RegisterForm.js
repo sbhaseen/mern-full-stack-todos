@@ -73,6 +73,7 @@ class RegisterForm extends Component {
 
           <label htmlFor="name">Name</label>
           <input
+            id="name"
             name="name"
             type="text"
             placeholder="Your name"
@@ -82,6 +83,7 @@ class RegisterForm extends Component {
 
           <label htmlFor="email">Email</label>
           <input
+            id="email"
             name="email"
             type="email"
             placeholder="Your email"
@@ -91,6 +93,7 @@ class RegisterForm extends Component {
 
           <label htmlFor="password">Password</label>
           <input
+            id="password"
             name="password"
             type="password"
             placeholder="Your password"
@@ -100,6 +103,7 @@ class RegisterForm extends Component {
 
           <label htmlFor="password2">Re-enter Password</label>
           <input
+            id="password2"
             name="password2"
             type="password"
             placeholder="Your password again"
