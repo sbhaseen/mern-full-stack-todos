@@ -4,6 +4,9 @@ import ItemList from './ItemList';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import AddItem from './AddItem';
+import EditItem from './EditItem';
+import DeleteItem from './DeleteItem';
+import Footer from './Footer';
 import NotFound from './NotFound';
 import {
   BrowserRouter as Router,
@@ -13,8 +16,6 @@ import {
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import EditItem from './EditItem';
-import DeleteItem from './DeleteItem';
 
 function RedirectComponent(props) {
   return <Redirect to="404" />;
@@ -49,6 +50,7 @@ class Main extends Component {
           />
           <Route path="*" component={NotFound} />
         </Switch>
+        <Footer />
       </Router>
     );
   }

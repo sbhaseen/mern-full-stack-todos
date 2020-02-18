@@ -146,6 +146,11 @@ button:disabled:active,
   display: inline-block;
 }
 
+footer {
+  text-align: center;
+  padding: 1em;
+}
+
 @media screen and (min-width: 768px) {
   body {
     font-size: 1.25rem;

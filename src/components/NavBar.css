@@ -64,7 +64,9 @@ nav {
   transition-property: filter;
   transition-duration: 150ms;
   transition-timing-function: ease-in-out;
+}
 
+.nav-item a {
   text-decoration: none;
   color: inherit;
 }
