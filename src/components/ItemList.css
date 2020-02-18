@@ -62,6 +62,7 @@ tr:nth-child(even) {
 
 th {
   padding: 0.5rem;
+  border-bottom: 1px solid var(--table-zebra-dark);
 }
 
 td {
