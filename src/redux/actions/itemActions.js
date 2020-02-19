@@ -9,6 +9,7 @@ import {
 } from './actionTypes';
 import { returnErrors } from './errorActions';
 import { headerConfig } from './authActions';
+import api from '../../api';
 
 /**
  * Handle fetching item data from the api.
@@ -19,7 +20,7 @@ export function getItems(fetchPage, fetchLimit) {
     params.append('page', fetchPage);
     params.append('limit', fetchLimit);
 
-    const getUrl = 'http://localhost:5000/api/items?' + params;
+    const getUrl = api.getAllItems + params;
 
     dispatch(setItemsLoading());
 
@@ -63,7 +64,7 @@ export function setAddedItemsFalse() {
  */
 export function addItem(item) {
   return (dispatch, getState) => {
-    const postUrl = 'http://localhost:5000/api/items/';
+    const postUrl = api.createItem;
 
     return axios
       .post(postUrl, item, headerConfig(getState))
@@ -85,7 +86,7 @@ export function addItem(item) {
  */
 export function updateItem(item) {
   return (dispatch, getState) => {
-    const putUrl = `http://localhost:5000/api/items/${item.id}`;
+    const putUrl = api.updateItem + item.id;
 
     return axios
       .put(putUrl, item, headerConfig(getState))
@@ -107,7 +108,7 @@ export function updateItem(item) {
  */
 export function deleteItem(id) {
   return (dispatch, getState) => {
-    const deleteUrl = `http://localhost:5000/api/items/delete/${id}`;
+    const deleteUrl = api.deleteItem + id;
 
     return axios
       .delete(deleteUrl, headerConfig(getState))

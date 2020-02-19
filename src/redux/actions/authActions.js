@@ -10,6 +10,7 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL
 } from './actionTypes';
+import api from '../../api';
 
 /**
  * Handle the registration of a new user.
@@ -28,7 +29,7 @@ export function register({ name, email, password }) {
 
     const body = JSON.stringify({ name, email, password });
 
-    const postUrl = 'http://localhost:5000/api/users';
+    const postUrl = api.createUser;
 
     return axios
       .post(postUrl, body, headerConfig)
@@ -43,7 +44,7 @@ export function register({ name, email, password }) {
 }
 
 /**
- * Handle the login an existing user.
+ * Handle the login of an existing user.
  * @param {Object} userData - The data of the user attempting to login.
  * @param {string} userData.email - The email of the user.
  * @param {string} userData.password - The password of the user.
@@ -58,7 +59,7 @@ export function login({ email, password }) {
 
     const body = JSON.stringify({ email, password });
 
-    const postUrl = 'http://localhost:5000/api/auth';
+    const postUrl = api.sendAuth;
 
     return axios
       .post(postUrl, body, headerConfig)
