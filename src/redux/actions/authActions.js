@@ -85,7 +85,7 @@ export function logout() {
  * Verifies that the use is loaded
  */
 export function loadUser() {
-  const getUrl = 'http://localhost:5000/api/auth/user';
+  const getUrl = api.getUser;
 
   return (dispatch, getState) => {
     dispatch({ type: USER_LOADING });
