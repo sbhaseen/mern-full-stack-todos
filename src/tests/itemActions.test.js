@@ -3,23 +3,21 @@ import thunk from 'redux-thunk';
 import * as actions from '../redux/actions/itemActions';
 import * as types from '../redux/actions/actionTypes';
 import moxios from 'moxios';
-import expect from 'expect'; // You can use any testing library
+import expect from 'expect';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-describe('async actions', () => {
+describe('item actions', () => {
   beforeEach(() => {
-    // import and pass your custom axios instance to this method
     moxios.install();
   });
 
   afterEach(() => {
-    // import and pass your custom axios instance to this method
     moxios.uninstall();
   });
 
-  it('successfully fetch items from the api', () => {
+  it('should successfully fetch items from the api', () => {
     const mockData = {
       completed: false,
       _id: '5e27918af21a4d66c1352cec',
@@ -51,12 +49,11 @@ describe('async actions', () => {
     const store = mockStore({ items: [] });
 
     return store.dispatch(actions.getItems()).then(() => {
-      // return of async actions
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
 
-  it('successfully and an items to the database', () => {
+  it('should successfully add an item to the database', () => {
     const mockData = {
       description: 'A test description 1',
       responsible: 'Responsible Person 1',
@@ -85,6 +82,70 @@ describe('async actions', () => {
     const store = mockStore({ items: [], auth: { token: 'A good token' } });
 
     return store.dispatch(actions.addItem()).then(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+    });
+  });
+
+  it('should successfully update an existing item in the database', () => {
+    const mockData = {
+      _id: '5e27918af21a4d66c1352cec',
+      description: 'A test description 1',
+      responsible: 'Responsible Person 1',
+      priority: 'Low'
+    };
+
+    moxios.wait(() => {
+      let request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        response: {
+          data: [mockData]
+        }
+      });
+    });
+
+    const expectedActions = [
+      {
+        type: types.ADD_ITEM,
+        payload: {
+          data: [mockData]
+        }
+      }
+    ];
+
+    const store = mockStore({ items: [], auth: { token: 'A good token' } });
+
+    return store.dispatch(actions.updateItem(mockData._id)).then(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+    });
+  });
+
+  it('should successfully delete an existing item in the database', () => {
+    const mockData = {
+      _id: '5e27918af21a4d66c1352cec',
+      description: 'A test description 1',
+      responsible: 'Responsible Person 1',
+      priority: 'Low'
+    };
+
+    moxios.wait(() => {
+      let request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        response: mockData._id
+      });
+    });
+
+    const expectedActions = [
+      {
+        type: types.DELETE_ITEM,
+        payload: mockData._id
+      }
+    ];
+
+    const store = mockStore({ items: [], auth: { token: 'A good token' } });
+
+    return store.dispatch(actions.deleteItem(mockData._id)).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
