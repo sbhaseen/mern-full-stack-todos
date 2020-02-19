@@ -20,7 +20,7 @@ describe('async actions', () => {
   });
 
   it('successfully fetch items from the api', () => {
-    const fakeData = {
+    const mockData = {
       completed: false,
       _id: '5e27918af21a4d66c1352cec',
       description: 'A test description 1',
@@ -33,7 +33,7 @@ describe('async actions', () => {
       request.respondWith({
         status: 200,
         response: {
-          data: [fakeData]
+          data: [mockData]
         }
       });
     });
@@ -43,7 +43,7 @@ describe('async actions', () => {
       {
         type: types.GET_ITEMS,
         payload: {
-          data: [fakeData]
+          data: [mockData]
         }
       }
     ];
@@ -57,7 +57,7 @@ describe('async actions', () => {
   });
 
   it('successfully and an items to the database', () => {
-    const fakeData = {
+    const mockData = {
       description: 'A test description 1',
       responsible: 'Responsible Person 1',
       priority: 'Low'
@@ -68,7 +68,7 @@ describe('async actions', () => {
       request.respondWith({
         status: 200,
         response: {
-          data: [fakeData]
+          data: [mockData]
         }
       });
     });
@@ -77,7 +77,7 @@ describe('async actions', () => {
       {
         type: types.ADD_ITEM,
         payload: {
-          data: [fakeData]
+          data: [mockData]
         }
       }
     ];
