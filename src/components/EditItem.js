@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {
-  getOneItem,
-  updateItem,
-  setAddedItemsFalse
-} from '../redux/actions/itemActions';
+import { updateItem, setAddedItemsFalse } from '../redux/actions/itemActions';
 import { clearErrors } from '../redux/actions/errorActions';
 import './Forms.css';
 
@@ -21,7 +17,6 @@ class EditItem extends Component {
 
   static propTypes = {
     setAddedItemsFalse: PropTypes.func.isRequired,
-    getOneItem: PropTypes.func.isRequired,
     updateItem: PropTypes.func.isRequired,
     items: PropTypes.object.isRequired,
     error: PropTypes.object.isRequired,
@@ -149,7 +144,6 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-  getOneItem,
   updateItem,
   setAddedItemsFalse,
   clearErrors

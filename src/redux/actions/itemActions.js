@@ -39,31 +39,6 @@ export function getItems(fetchPage, fetchLimit) {
 }
 
 /**
- * Handle fetching a single item from the api.
- * @param {string} id - The id of an existing item.
- */
-export function getOneItem(id) {
-  return dispatch => {
-    const getUrl = `http://localhost:5000/api/items/${id}`;
-
-    dispatch(setItemsLoading());
-
-    return axios
-      .get(getUrl)
-      .then(res =>
-        dispatch({
-          type: GET_ITEMS,
-          payload: res.data
-        })
-      )
-      .catch(err => {
-        dispatch(returnErrors(err));
-        dispatch({ type: ITEMS_ERROR });
-      });
-  };
-}
-
-/**
  * A helper function to set a loading status.
  * Can be used for loading animations.
  */
@@ -104,6 +79,10 @@ export function addItem(item) {
   };
 }
 
+/**
+ * Handle updating the data of an existing item.
+ * @param {Object} item - The new updated data of the item.
+ */
 export function updateItem(item) {
   return (dispatch, getState) => {
     const putUrl = `http://localhost:5000/api/items/${item.id}`;
