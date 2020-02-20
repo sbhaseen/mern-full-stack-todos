@@ -27,7 +27,7 @@ export default function paginationReducer(state = initialState, action) {
         isLoading: false
       };
     case GET_NEXT_PAGE:
-      if (state.currentPage > 0) {
+      if (state.currentPage > 0 && state.nextPage !== undefined) {
         return {
           ...state,
           currentPage: state.nextPage
@@ -39,7 +39,7 @@ export default function paginationReducer(state = initialState, action) {
       }
 
     case GET_PREV_PAGE:
-      if (state.currentPage > 1) {
+      if (state.currentPage > 1 && state.previousPage !== undefined) {
         return {
           ...state,
           currentPage: state.previousPage
@@ -53,7 +53,7 @@ export default function paginationReducer(state = initialState, action) {
     case SET_PAGE_ITEM_LIMIT:
       return {
         ...state,
-        itemLimit: action.payload
+        itemLimit: action.payload > 0 ? action.payload : state.itemLimit
       };
 
     case ITEMS_LOADING:

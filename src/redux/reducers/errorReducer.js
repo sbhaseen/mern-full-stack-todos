@@ -14,11 +14,16 @@ export default function errorReducer(state = initialState, action) {
   switch (action.type) {
     case GET_ERRORS:
       return {
+        ...state,
         msg: action.payload.msg,
         status: action.payload.status
       };
     case CLEAR_ERRORS:
-      return initialState;
+      return {
+        ...state,
+        msg: null,
+        status: null
+      };
     default:
       return state;
   }
