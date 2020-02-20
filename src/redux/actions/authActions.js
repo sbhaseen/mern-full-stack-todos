@@ -82,7 +82,7 @@ export function logout() {
 }
 
 /**
- * Verifies that the use is loaded
+ * Handle the loading of a user if a stored token is still valid token.
  */
 export function loadUser() {
   const getUrl = api.getUser;
