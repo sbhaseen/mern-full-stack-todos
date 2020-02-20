@@ -1,7 +1,9 @@
 import { GET_ERRORS, CLEAR_ERRORS } from './actionTypes';
 
 /**
- * Handle the parsing of an error object into the global state.
+ * Handle the parsing of a returned API error object into the global state.
+ * Since it is invoked on API call catch methods, this is based on the pattern for axios error parsing.
+ * See: https://github.com/axios/axios - Handling Errors section.
  * @param {Object} err - The error object to be parsed.
  */
 export function returnErrors(err) {
@@ -13,7 +15,7 @@ export function returnErrors(err) {
   } else if (err.request) {
     return {
       type: GET_ERRORS,
-      payload: { msg: err.message, status: 400 }
+      payload: { msg: err.request, status: 400 }
     };
   } else {
     return {

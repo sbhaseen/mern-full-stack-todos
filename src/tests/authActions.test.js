@@ -243,7 +243,7 @@ describe('auth actions', () => {
     });
   });
 
-  it('should not load a user and return an error if a user does not have a valid token', () => {
+  it('should not load a user but return an error if a user does not have a valid token', () => {
     moxios.wait(() => {
       let request = moxios.requests.mostRecent();
       request.respondWith({
@@ -268,7 +268,7 @@ describe('auth actions', () => {
 
     const store = mockStore({
       auth: {
-        token: 'a valid token',
+        token: null,
         isAuthenticated: null,
         isLoading: false,
         user: null
