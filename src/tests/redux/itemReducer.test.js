@@ -1,5 +1,5 @@
-import itemReducer from '../redux/reducers/itemReducer';
-import * as types from '../redux/actions/actionTypes';
+import itemReducer from '../../redux/reducers/itemReducer';
+import * as types from '../../redux/actions/actionTypes';
 
 describe('item reducer', () => {
   it('should return the initial state', () => {

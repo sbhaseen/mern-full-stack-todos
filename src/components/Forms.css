@@ -23,8 +23,10 @@ form {
 }
 
 legend {
+  width: 100%;
   padding: 1em;
-  font-size: 2rem;
+  font-size: 1rem;
+  word-wrap: break-word;
 }
 
 form > label {
@@ -121,5 +123,9 @@ form > small {
   form {
     min-width: 50%;
     max-width: 800px;
+  }
+
+  legend {
+    font-size: 2rem;
   }
 }

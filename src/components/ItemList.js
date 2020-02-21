@@ -7,65 +7,10 @@ import {
   getPrevPage,
   setPageItemLimit
 } from '../redux/actions/paginationActions';
-import './ItemList.css';
+import TableBody from './TableBody';
 import LoadingSpinner from './LoadingSpinner';
 import { Link } from 'react-router-dom';
-
-function TableBody(props) {
-  const items = props.items;
-  const auth = props.auth;
-
-  if (items.length > 0) {
-    const itemsBody = items.map((item, index) => (
-      <tr key={index}>
-        <td className={item.completed ? 'completed' : null}>
-          {item.description}{' '}
-        </td>
-        <td className={item.completed ? 'completed' : null}>
-          {item.responsible}
-        </td>
-        <td className={item.completed ? 'completed' : null}>{item.priority}</td>
-        <td
-          className="status"
-          style={item.completed ? { color: 'green' } : { color: 'red' }}
-        >
-          {item.completed
-            ? String.fromCharCode(10004)
-            : String.fromCharCode(10006)}
-        </td>
-        {auth ? (
-          <td>
-            <Link
-              to={{ pathname: `/edit/${item._id}`, state: { item } }}
-              className="btn btn-primary"
-            >
-              Edit
-            </Link>
-
-            <Link
-              to={{ pathname: `/delete/${item._id}`, state: { item } }}
-              className="btn btn-danger"
-            >
-              Delete
-            </Link>
-          </td>
-        ) : (
-          <td></td>
-        )}
-      </tr>
-    ));
-
-    return <tbody>{itemsBody}</tbody>;
-  } else {
-    return (
-      <tbody>
-        <tr>
-          <td colSpan="5">No Data to Display</td>
-        </tr>
-      </tbody>
-    );
-  }
-}
+import './ItemList.css';
 
 class ItemList extends Component {
   static propTypes = {
@@ -119,80 +64,78 @@ class ItemList extends Component {
 
     return (
       <>
-        <section>
-          <div className="table-top">
-            <div className="item-limit-container">
-              <label htmlFor="item-limit">Items per page: </label>
-              <select
-                id="item-limit"
-                name="item-limit"
-                onChange={this.handleLimitSelection}
-                defaultValue={this.props.pagination.itemLimit}
-                disabled={this.props.items.items.length > 0 ? false : true}
-              >
-                <option value="5">5</option>
-                <option value="10">10</option>
-              </select>
-            </div>
-            {isAuthenticated ? (
-              <div className="add-button">
-                <Link to="/add" className="btn">
-                  Add Item
-                </Link>
-              </div>
-            ) : (
-              <p className="msg-banner">Please login to manage items.</p>
-            )}
+        <div className="table-top">
+          <div className="item-limit-container">
+            <label htmlFor="item-limit">Items per page: </label>
+            <select
+              id="item-limit"
+              name="item-limit"
+              onChange={this.handleLimitSelection}
+              defaultValue={this.props.pagination.itemLimit}
+              disabled={this.props.items.items.length > 0 ? false : true}
+            >
+              <option value="5">5</option>
+              <option value="10">10</option>
+            </select>
           </div>
-
-          <div className="table-container">
-            <table className="item-list-table">
-              <thead>
-                <tr>
-                  <th>Description</th>
-                  <th>Responsible</th>
-                  <th>Priority</th>
-                  <th>Completed</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-
-              {isLoading ? (
-                <tbody>
-                  <tr>
-                    <td colSpan="5">
-                      <LoadingSpinner />
-                    </td>
-                  </tr>
-                </tbody>
-              ) : (
-                <TableBody items={items} auth={isAuthenticated} />
-              )}
-            </table>
-          </div>
-          {isLoading ? null : (
-            <div className="table-nav-container">
-              <button
-                disabled={this.props.pagination.previousPage ? false : true}
-                onClick={this.handlePreviousPage}
-              >
-                Prev
-              </button>
-
-              <p>
-                Page {this.props.pagination.currentPage} of{' '}
-                {this.props.pagination.total.pages}
-              </p>
-
-              <button
-                disabled={this.props.pagination.nextPage ? false : true}
-                onClick={this.handleNextPage}
-              >
-                Next
-              </button>
+          {isAuthenticated ? (
+            <div className="add-button">
+              <Link to="/add" className="btn">
+                Add Item
+              </Link>
             </div>
+          ) : (
+            <p className="msg-banner">Please login to manage items.</p>
           )}
-        </section>
+        </div>
+
+        <div className="table-container">
+          <table className="item-list-table">
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>Responsible</th>
+                <th>Priority</th>
+                <th>Completed</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+
+            {isLoading ? (
+              <tbody>
+                <tr>
+                  <td colSpan="5">
+                    <LoadingSpinner />
+                  </td>
+                </tr>
+              </tbody>
+            ) : (
+              <TableBody items={items} auth={isAuthenticated} />
+            )}
+          </table>
+        </div>
+        {isLoading ? null : (
+          <div className="table-nav-container">
+            <button
+              disabled={this.props.pagination.previousPage ? false : true}
+              onClick={this.handlePreviousPage}
+            >
+              Prev
+            </button>
+
+            <p>
+              Page {this.props.pagination.currentPage} of{' '}
+              {this.props.pagination.total.pages}
+            </p>
+
+            <button
+              disabled={this.props.pagination.nextPage ? false : true}
+              onClick={this.handleNextPage}
+            >
+              Next
+            </button>
+          </div>
+        )}
       </>
     );
   }

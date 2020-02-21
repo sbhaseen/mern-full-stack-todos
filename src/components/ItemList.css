@@ -2,6 +2,7 @@
   overflow-x: auto;
   overflow-y: auto;
   max-height: 65vh;
+  box-shadow: var(--global-shadow);
   z-index: 1;
 }
 

@@ -10,16 +10,17 @@
   border-radius: var(--global-border-radius);
   background: #ffe8e8;
   box-shadow: var(--global-shadow);
+
+  word-wrap: break-word;
 }
 
 .delete-form > h1,
 .delete-form > h2,
-.delete-form > h3 {
-  padding: 0.25em 0;
-}
-
+.delete-form > h3,
 .delete-form > h4 {
-  padding: 0.25em;
+  padding: 0.25em 0;
+  font-size: 1rem;
+  width: 100%;
 }
 
 .delete-form > .info-group {
@@ -35,5 +36,12 @@
   .delete-form {
     min-width: 50%;
     max-width: 800px;
+  }
+
+  .delete-form > h1,
+  .delete-form > h2,
+  .delete-form > h3,
+  .delete-form > h4 {
+    font-size: inherit;
   }
 }

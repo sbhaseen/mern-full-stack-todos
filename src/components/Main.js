@@ -32,24 +32,26 @@ class Main extends Component {
     return (
       <Router>
         <NavBar />
-        <Switch>
-          <Route exact path="/" component={ItemList} />
-          <Route path="/login" component={LoginForm} />
-          <Route path="/register" component={RegisterForm} />
-          <Route
-            path="/add"
-            component={isAuthenticated ? AddItem : RedirectComponent}
-          />
-          <Route
-            path="/edit/:id"
-            component={isAuthenticated ? EditItem : RedirectComponent}
-          />
-          <Route
-            path="/delete/:id"
-            component={isAuthenticated ? DeleteItem : RedirectComponent}
-          />
-          <Route path="*" component={NotFound} />
-        </Switch>
+        <section>
+          <Switch>
+            <Route exact path="/" component={ItemList} />
+            <Route path="/login" component={LoginForm} />
+            <Route path="/register" component={RegisterForm} />
+            <Route
+              path="/add"
+              component={isAuthenticated ? AddItem : RedirectComponent}
+            />
+            <Route
+              path="/edit/:id"
+              component={isAuthenticated ? EditItem : RedirectComponent}
+            />
+            <Route
+              path="/delete/:id"
+              component={isAuthenticated ? DeleteItem : RedirectComponent}
+            />
+            <Route path="*" component={NotFound} />
+          </Switch>
+        </section>
         <Footer />
       </Router>
     );

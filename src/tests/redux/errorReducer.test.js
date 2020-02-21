@@ -1,5 +1,5 @@
-import errorReducer from '../redux/reducers/errorReducer';
-import * as types from '../redux/actions/actionTypes';
+import errorReducer from '../../redux/reducers/errorReducer';
+import * as types from '../../redux/actions/actionTypes';
 
 describe('error reducer', () => {
   it('should return the initial state', () => {

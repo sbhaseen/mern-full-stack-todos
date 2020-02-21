@@ -1,7 +1,5 @@
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import * as actions from '../redux/actions/paginationActions';
-import * as types from '../redux/actions/actionTypes';
+import * as actions from '../../redux/actions/paginationActions';
+import * as types from '../../redux/actions/actionTypes';
 import expect from 'expect';
 
 describe('pagination actions', () => {

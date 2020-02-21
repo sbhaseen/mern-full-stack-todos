@@ -1,5 +1,5 @@
-import paginationReducer from '../redux/reducers/paginationReducer';
-import * as types from '../redux/actions/actionTypes';
+import paginationReducer from '../../redux/reducers/paginationReducer';
+import * as types from '../../redux/actions/actionTypes';
 
 describe('pagination reducer', () => {
   it('should return the initial state', () => {
