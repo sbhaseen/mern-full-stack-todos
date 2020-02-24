@@ -148,6 +148,6 @@ button:focus.menu-toggle {
   }
 
   .nav-list a {
-    font-size: inherit;
+    font-size: 1.25rem;
   }
 }
