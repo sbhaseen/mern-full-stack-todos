@@ -12,10 +12,11 @@ import LoadingSpinner from './LoadingSpinner';
 import { Link } from 'react-router-dom';
 import './ItemList.css';
 
-class ItemList extends Component {
+export class ItemList extends Component {
   static propTypes = {
     getItems: PropTypes.func.isRequired,
     items: PropTypes.object.isRequired,
+    pagination: PropTypes.object.isRequired,
     isLoading: PropTypes.bool,
     isAuthenticated: PropTypes.bool
   };

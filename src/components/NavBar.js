@@ -5,7 +5,7 @@ import { logout } from '../redux/actions/authActions';
 import PropTypes from 'prop-types';
 import './NavBar.css';
 
-class NavBar extends Component {
+export class NavBar extends Component {
   state = {
     toggleNavMenu: false
   };

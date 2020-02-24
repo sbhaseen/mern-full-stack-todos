@@ -5,7 +5,7 @@ import { updateItem, setAddedItemsFalse } from '../redux/actions/itemActions';
 import { clearErrors } from '../redux/actions/errorActions';
 import './Forms.css';
 
-class EditItem extends Component {
+export class EditItem extends Component {
   state = {
     id: this.props.location.state.item._id,
     description: this.props.location.state.item.description,

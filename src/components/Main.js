@@ -21,7 +21,7 @@ function RedirectComponent(props) {
   return <Redirect to="404" />;
 }
 
-class Main extends Component {
+export class Main extends Component {
   static propTypes = {
     isAuthenticated: PropTypes.bool
   };

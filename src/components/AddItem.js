@@ -5,7 +5,7 @@ import { addItem, setAddedItemsFalse } from '../redux/actions/itemActions';
 import { clearErrors } from '../redux/actions/errorActions';
 import './Forms.css';
 
-class AddItem extends Component {
+export class AddItem extends Component {
   state = {
     description: null,
     responsible: null,

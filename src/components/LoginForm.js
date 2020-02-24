@@ -5,7 +5,7 @@ import { clearErrors } from '../redux/actions/errorActions';
 import { connect } from 'react-redux';
 import './Forms.css';
 
-class LoginForm extends Component {
+export class LoginForm extends Component {
   state = {
     email: '',
     password: '',

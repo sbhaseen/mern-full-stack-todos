@@ -5,7 +5,7 @@ import { deleteItem } from '../redux/actions/itemActions';
 import './Forms.css';
 import './DeleteItem.css';
 
-class DeleteItem extends Component {
+export class DeleteItem extends Component {
   state = {
     id: this.props.location.state.item._id,
     description: this.props.location.state.item.description,
