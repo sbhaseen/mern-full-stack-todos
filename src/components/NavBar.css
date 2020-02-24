@@ -61,7 +61,7 @@ nav {
   padding: 0.5em 1em;
   background: var(--primary-color);
   cursor: pointer;
-  transition-property: filter;
+  transition-property: background;
   transition-duration: 150ms;
   transition-timing-function: ease-in-out;
 }
@@ -73,7 +73,7 @@ nav {
 
 .nav-item:hover,
 .nav-item:focus {
-  filter: brightness(85%);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .nav-item:active {
