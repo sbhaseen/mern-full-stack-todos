@@ -29,7 +29,10 @@ export class ItemList extends Component {
   }
 
   componentDidUpdate() {
-    if (this.props.pagination.currentPage > this.props.pagination.total.pages) {
+    if (
+      this.props.pagination.currentPage > this.props.pagination.total.pages &&
+      this.props.pagination.total.pages > 0
+    ) {
       this.handlePreviousPage();
     }
   }

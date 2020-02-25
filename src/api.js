@@ -1,4 +1,5 @@
-export const resourceURL = 'http://localhost:5000/';
+// export const resourceURL = 'http://localhost:5000/'; // Local development
+export const resourceURL = 'https://cryptic-sands-86857.herokuapp.com/';
 
 export default {
   // api/items
