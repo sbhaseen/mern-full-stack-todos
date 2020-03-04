@@ -1,12 +1,12 @@
 # MERN Item List Frontend
 
-A MERN Stack Frontend Application. This is a demo project that builds out a frontend React app that connected to an Express.js RESTful backend.
+A MERN Stack Frontend Application. This is a demo project that builds out a frontend React app that connects to an Express.js RESTful backend.
 
 The main motivation behind this project was to explore a realistic Redux usage scenario as well as the testing invloved with such an implementation.
 
 The styles are 100% custom CSS, but draw some inspiration from Google's [Material Design](https://material.io/design/). The views are all fully responsive and change based on the `screen` attribute and `min-width: 768px`.
 
-See the [backend](https://github.com/sbhaseen/mern-item-list-backend)
+See the related [backend project](https://github.com/sbhaseen/mern-item-list-backend).
 
 ## Getting Started
 
@@ -73,7 +73,7 @@ Authenticated or auth links only consits of the Logout feature, which simply cle
 
 When accessing the main view or "Home", the items will be visible in a paginated table format and will have certain views hidden or show based on the global authentication (auth) state.
 
-For items specifically, the auth-specific views are:
+For items specifically, the authentication enabled views are:
 
 - Add Item (button)
 - Under the actions column:
