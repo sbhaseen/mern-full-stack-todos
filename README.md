@@ -86,15 +86,25 @@ For pagination, the user can navigate using `Prev` or `Next` buttons under the t
 
 Some screenshots of the app:
 
-The main page:
+The main view:
 
-The main page loading (spinner):
+![main view](https://sbhaseen.github.io/mern-item-list-frontend/MainView.png)
+
+The main view loading (spinner):
+
+![loading spinner](https://sbhaseen.github.io/mern-item-list-frontend/AppLoading.png)
 
 The mobile view of the main page:
 
+<img src="https://sbhaseen.github.io/mern-item-list-frontend/MainViewMobile.png" width="360">
+
 The Register form:
 
+![register form](https://sbhaseen.github.io/mern-item-list-frontend/RegisterView.png)
+
 Editing an item:
+
+![edit view](https://sbhaseen.github.io/mern-item-list-frontend/EditItem.png)
 
 ## Built With
 
