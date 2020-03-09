@@ -1,6 +1,6 @@
 # MERN Item List Frontend
 
-A MERN Stack Frontend Application. This is a demo project that builds out a frontend React app that connects to an Express.js RESTful backend.
+A MERN Stack Frontend Application for creating and maintaing a To Do list. This is a demo project that builds out a frontend React app that connects to an Express.js RESTful backend and provides full CRUD (Create, Read, Updated and Delete) functionality.
 
 The main motivation behind this project was to explore a realistic Redux usage scenario as well as the testing invloved with such an implementation.
 
@@ -83,6 +83,18 @@ For items specifically, the authentication enabled views are:
 If a user is not logged in, these buttons will not be visible.
 
 For pagination, the user can navigate using `Prev` or `Next` buttons under the table. A user may also select the items per page from a drop-down menu above the table. The default limit is 5 and the programmed limits are 5 and 10, respectively. The idea was to be as mobile-friendly as possible and higher limits simply add more scolling on mobile screens.
+
+Some screenshots of the app:
+
+The main page:
+
+The main page loading (spinner):
+
+The mobile view of the main page:
+
+The Register form:
+
+Editing an item:
 
 ## Built With
 
