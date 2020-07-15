@@ -88,23 +88,23 @@ Some screenshots of the app:
 
 The main view:
 
-![main view](https://sbhaseen.github.io/mern-item-list-frontend/MainView.png)
+![main view](docs/MainView.png)
 
 The main view loading (spinner):
 
-![loading spinner](https://sbhaseen.github.io/mern-item-list-frontend/AppLoading.png)
+![loading spinner](docs/AppLoading.png)
 
 The mobile view of the main page:
 
-<img src="https://sbhaseen.github.io/mern-item-list-frontend/MainViewMobile.png" width="360">
+<img src="docs/MainViewMobile.png" width="360">
 
 The Register form:
 
-![register form](https://sbhaseen.github.io/mern-item-list-frontend/RegisterView.png)
+![register form](docs/RegisterView.png)
 
 Editing an item:
 
-![edit view](https://sbhaseen.github.io/mern-item-list-frontend/EditItem.png)
+![edit view](docs/EditItem.png)
 
 ## Built With
 
